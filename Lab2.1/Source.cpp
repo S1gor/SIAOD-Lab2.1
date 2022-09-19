@@ -83,7 +83,7 @@ void goPrev(Ring& r)
 	r.current = r.current->prev;
 }
 
-void print(Ring& r)
+void print(Ring r)
 {
 	if (r.current == NULL)
 	{
@@ -99,19 +99,14 @@ void print(Ring& r)
 
 void findEl(Ring& r, int d)
 {
-	if (r.current == NULL)
+	if (r.current == NULL || r.current->data == d)
 		return;
 
-	if (r.current->data == d)
-	{
-		printf("Есть элемент %d в кольцевом списке\n", d);
-		return;
-	}
 	for (Element* cur = r.current->next; cur != r.current; cur = cur->next)
 	{
 		if (cur->data == d)
 		{
-			printf("Есть элемент %d в кольцевом списке\n", d);
+			r.current = cur;
 			return;
 		}
 	}
